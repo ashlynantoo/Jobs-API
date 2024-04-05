@@ -20,10 +20,23 @@ const JobSchema = new mongoose.Schema(
       },
       default: "pending",
     },
+    jobLocation: {
+      type: String,
+      required: [true, "Please provide the job location"],
+      maxlength: [20, "Job location can't exceed 20 characters"],
+    },
+    jobType: {
+      type: String,
+      enum: {
+        values: ["full-time", "part-time", "remote", "internship"],
+        message: "Job type '{VALUE}' is not supported",
+      },
+      default: "full-time",
+    },
     createdBy: {
       type: mongoose.Types.ObjectId,
       ref: "User",
-      required: [true, "Please provide the user ID"],
+      required: [true, "User details not available"],
     },
   },
   { timestamps: true }

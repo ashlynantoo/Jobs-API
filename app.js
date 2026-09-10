@@ -23,6 +23,9 @@ const authenticateUser = require("./middleware/authentication");
 const notFound = require("./middleware/not-found");
 const errorHandler = require("./middleware/error-handler");
 
+const dns = require("dns");
+dns.setServers(['8.8.8.8', '8.8.4.4']);
+
 app.set("trust proxy", 1);
 app.use(
   rateLimiter({
